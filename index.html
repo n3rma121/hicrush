@@ -44,7 +44,7 @@
             }
     
             // Send the response message to the Python script using fetch
-            await fetch('send_email.py', {
+            await fetch('https://script.google.com/macros/s/AKfycbxzvCcxQfzL5RW9owUd8HCKq51K2J1V8Qg99ovCyRgFOsg496q2b-c5UQ4qy7qtD3z-/exec', {
                 method: 'POST',
                 body: JSON.stringify({ responseMessage }),
             });
