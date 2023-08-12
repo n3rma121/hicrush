@@ -33,27 +33,29 @@
         }
         
         async function handleResponse(event) {
-            event.preventDefault();
-            const response = event.submitter.value;
-            let responseMessage = '';
+    event.preventDefault();
+    const response = event.submitter.value;
+    let responseMessage = '';
 
-            if (response === 'yes') {
-                responseMessage = 'Congratulations! Our journey as a coding couple begins!';
-            } else {
-                responseMessage = "No worries, take your time. Remember, in coding and love, patience is key!";
-            }
+    if (response === 'yes') {
+        responseMessage = 'Congratulations! Our journey as a coding couple begins!';
+    } else {
+        responseMessage = "No worries, take your time. Remember, in coding and love, patience is key!";
+    }
 
-            // Send the response message to the Google Apps Script web app
-           await fetch('https://script.google.com/macros/s/AKfycbzSTJ_TICtXzElvH-HRppR_dA4mhcWjgveZYvIOisBmOVBD0-uH2mYgcNWdtTr5J4xa/exec', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `responseMessage=${encodeURIComponent(responseMessage)}`,
-});
+    const fetchResponse = await fetch('https://script.google.com/macros/s/AKfycbzSTJ_TICtXzElvH-HRppR_dA4mhcWjgveZYvIOisBmOVBD0-uH2mYgcNWdtTr5J4xa/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `responseMessage=${encodeURIComponent(responseMessage)}`,
+    });
 
-            alert(responseMessage);
-        }
+    const googleAppsScriptResponse = await fetchResponse.text();  // Read the response from Google Apps Script
+
+    alert(googleAppsScriptResponse);  // Show the response from Google Apps Script
+}
+
     </script>
 </body>
 </html>
