@@ -5,32 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proposal Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body{
+          font-family: Arial, sans-serif;
             text-align: center;
+            background-image: url('image.jpg');
+             background-size: cover;
+             /* background-position: center; */
+             background-repeat: no-repeat;
+             color:white
         }
         #proposal {
             display: none;
+            font-size: 20px;
         }
+        
+         
+
+    #arrow {
+        opacity: 0; /* Initially hide the arrow */
+        animation: arrowAnimation 0.5s steps(1) infinite;
+    }
+
+    @keyframes arrowAnimation {
+        from {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    /* Style for the proposal buttons */
+    .proposal-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #3498db; /* Button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .proposal-button:hover {
+        background-color: #2980b9; /* Hover color */
+    }
     </style>
 </head>
 <body>
-    <h1>Coding the Path to Your Heart</h1>
-    <button onclick="loadProposal()">Load Proposal</button>
+    <h1><span id="headingToType">	&#128150</span>&#128150<span id="arrow">▶️</span></h1>
+
+    <br>
+    <br>
+    <button class="proposal-button" id="loadProposalButton" onclick="loadProposal()">Load Proposal</button>
+
     <div id="proposal">
         <p>Hey there,</p>
         <p>You've captured my heart's memory like an unforgettable variable.</p>
         <p>Just like well-structured code, I want to make our journey together meaningful.</p>
         <p>So, will you join me in crafting a lifetime of beautiful memories?</p>
+        <br><br>
         <form id="responseForm" onsubmit="handleResponse(event)">
-            <button type="submit" value="yes">Yes, let's code this love!</button>
-            <button type="submit" value="no">I need to debug my feelings</button>
+            <button type="submit"  class="proposal-button" value="yes">Yes, let's code this love &#128150</button>
+            <button type="submit"  class="proposal-button" value="no">I have a boyfriend &#128527</button>
+            <button type="submit"  class="proposal-button" value="date">I want to know more about you. Lets go on a coffee date</button>
         </form>
     </div>
     <script>
-         function loadProposal() {
-            document.getElementById('proposal').style.display = 'block';
+          function typeHeading(elementId, text, index = 0) {
+        const element = document.getElementById(elementId);
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(() => typeHeading(elementId, text, index), 100); // Adjust the delay (in milliseconds)
+        } else {
+            document.getElementById('arrow').style.opacity = 1; // Show the arrow
         }
+    }
+
+    window.onload = function() {
+        typeHeading('headingToType', 'Coding the Path to Your Heart	');
+    };
+    function loadProposal() {
+    const loadButton = document.getElementById('loadProposalButton');
+    const proposalContainer = document.getElementById('proposal');
+    loadButton.style.display = 'none'; // Hide the button
+    proposalContainer.style.display = 'block'; // Show the proposal content
+}
         
         async function handleResponse(event) {
     event.preventDefault();
@@ -38,12 +101,16 @@
     let responseMessage = '';
 
     if (response === 'yes') {
-        responseMessage = 'Congratulations! Our journey as a coding couple begins!';
-    } else {
-        responseMessage = "No worries, take your time. Remember, in coding and love, patience is key!";
+        responseMessage = 'She said YES :)';
+        const youtubeLink = document.getElementById('youtubeLink');
+        youtubeLink.click();
+    } else if(response == 'no'){
+        responseMessage = "She said NO :(";
+    }else{
+        responseMessage = "Hurray! Coffee date :)";
     }
 
-    const fetchResponse = await fetch('https://script.google.com/macros/s/AKfycby5omgt6xexVUyuWWFwNgUmxZ1zkIf8c5mLKJy4c24WLaBekHs4smqgh7PziAx_fg-D/exec', {
+    const fetchResponse = await fetch('https://script.google.com/macros/s/AKfycbzeCIPJDQjvb7meXSdf2TdCo-q5kvYiPrl7JdpA7sztu5GqvCCfI-79SjreqCZGgZ3R/exec', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -57,5 +124,9 @@
 }
 
     </script>
+    <footer>
+        <p>Created with ❤️ by Nirmal :)</p>
+    </footer>
+    <a id="youtubeLink" href="https://www.youtube.com/watch?v=your-video-id" target="_blank" style="display: none;"></a>
 </body>
 </html>
