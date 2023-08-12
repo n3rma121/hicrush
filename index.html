@@ -28,6 +28,9 @@
         </form>
     </div>
     <script>
+         function loadProposal() {
+            document.getElementById('proposal').style.display = 'block';
+        }
     async function handleResponse(event) {
         event.preventDefault();
         const response = event.submitter.value;
