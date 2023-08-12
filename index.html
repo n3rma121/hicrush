@@ -44,13 +44,13 @@
             }
 
             // Send the response message to the Google Apps Script web app
-            await fetch('https://script.google.com/macros/s/AKfycbwYbqOFC2IOt0DIxFaWzaEB5UIVRaKQoaQnLIUd4UskBt2TsR5LV9DWCifBQsK9J2k/exec', {
-                method: 'POST', // Use POST to send data
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `responseMessage=${encodeURIComponent(responseMessage)}`,
-            });
+           await fetch('https://script.google.com/macros/s/AKfycbzSTJ_TICtXzElvH-HRppR_dA4mhcWjgveZYvIOisBmOVBD0-uH2mYgcNWdtTr5J4xa/exec', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `responseMessage=${encodeURIComponent(responseMessage)}`,
+});
 
             alert(responseMessage);
         }
