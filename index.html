@@ -28,29 +28,33 @@
         </form>
     </div>
     <script>
-        function loadProposal() {
-            document.getElementById('proposal').style.display = 'block';
+    async function handleResponse(event) {
+        event.preventDefault();
+        const response = event.submitter.value;
+        let responseMessage = '';
+
+        if (response === 'yes') {
+            responseMessage = 'Congratulations! Our journey as a coding couple begins!';
+        } else {
+            responseMessage = "No worries, take your time. Remember, in coding and love, patience is key!";
         }
-    
-        async function handleResponse(event) {
-            event.preventDefault();
-            const response = event.submitter.value;
-            let responseMessage = '';
-    
-            if (response === 'yes') {
-                responseMessage = 'Congratulations! Our journey as a coding couple begins!';
-            } else {
-                responseMessage = "No worries, take your time. Remember, in coding and love, patience is key!";
-            }
-    
-            // Send the response message to the Python script using fetch
-            await fetch('https://script.google.com/macros/s/AKfycbxzvCcxQfzL5RW9owUd8HCKq51K2J1V8Qg99ovCyRgFOsg496q2b-c5UQ4qy7qtD3z-/exec', {
-                method: 'POST',
-                body: JSON.stringify({ responseMessage }),
-            });
-    
-            alert(responseMessage);
-        }
-    </script>
+
+        // Send the response message to the Google Apps Script web app
+        await fetch('https://script.google.com/macros/s/AKfycbxmrmn9ljOHF_gJW_Tkh_T8V2eP6m6uRSRXqxnm1A1lYLCVKwqrS5EqRIgGWTAf7mGY/exec', {
+            method: 'GET',  // Use GET to access the web app
+            mode: 'no-cors',  // Handle CORS
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: `responseMessage=${encodeURIComponent(responseMessage)}`,
+        });
+
+        alert(responseMessage);
+    }
+</script>
+
 </body>
 </html>    
