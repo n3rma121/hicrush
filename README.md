@@ -1,4 +1,4 @@
-# n3rma1.github.io
+# Proposing To Crush in a Different Way :-)
 
 I have used Google App Script that sends notification to my email address mentioned in Appscript.
 
