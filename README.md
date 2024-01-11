@@ -3,7 +3,7 @@
 I have used Google App Script that sends notification to my email address mentioned in Appscript.
 
 # Code.gs file for Script
-```
+```js
 function sendEmailNotification(response) {
   var recipient = "youremail@a.com";  // Replace with your email
   var subject = "Proposal Response Notification";
@@ -22,6 +22,4 @@ function doPost(e) {
 }
 
 ```
-My small effort to do something unique to propose to my crush.
-
-I hope she will accept it.
+Good luck!
