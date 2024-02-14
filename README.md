@@ -1,5 +1,4 @@
-See live at [hicrush.netlify.app](https://hicrush.netlify.app/)
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d45c86b5-c6e0-4b6b-9b08-0a512a310694/deploy-status)](https://app.netlify.com/sites/hicrush/deploys)
 # Proposing To Crush in a Different Way :-)
 
 I have used Google App Script that sends notification to my email address mentioned in Appscript.
